@@ -26,9 +26,21 @@ jobs:
 
       - name: Generate Minecraft sources
         run: gradle genSources
-      
+
       - name: Compile mod
         run: gradle build
+
+      - name: Collect Minecraft sources
+        run: |
+          mkdir -p generated-sources
+          find . -path '*/minecraftMaven/net/minecraft/minecraft-merged/*-sources.jar' -exec cp {} generated-sources/ \;
+          ls -lh generated-sources
+
+      - name: Upload Minecraft sources
+        uses: actions/upload-artifact@v6
+        with:
+          name: MinecraftSources
+          path: generated-sources/*.jar
 
       - name: Upload JAR
         uses: actions/upload-artifact@v6
