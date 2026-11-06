@@ -18,13 +18,9 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    exceptions ploceus.raven(project.raven_build)
-    signatures ploceus.sparrow(project.sparrow_build)
     mappings ploceus.featherMappings(project.feather_build)
     ploceus.dependOsl(project.osl_version)
 
-    // Mixin is supplied by the Ornithe/Fabric loader at runtime; this dependency
-    // is used only by the annotation processor to generate the remapping refmap.
     annotationProcessor "net.fabricmc:sponge-mixin:0.15.0+mixin.0.8.7"
 }
 
