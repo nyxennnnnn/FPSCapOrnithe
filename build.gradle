@@ -1,3 +1,4 @@
+
 plugins {
     id 'maven-publish'
     id 'fabric-loom' version '1.18-SNAPSHOT'
@@ -22,8 +23,14 @@ dependencies {
     ploceus.dependOsl(project.osl_version)
 
     annotationProcessor "net.fabricmc:sponge-mixin:0.15.0+mixin.0.8.7"
+}
 
-    useLegacyMixinAp = true
+loom {
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = 'customfpscap.refmap.json'
+    }
+}
 
 processResources {
     inputs.property 'version', version
