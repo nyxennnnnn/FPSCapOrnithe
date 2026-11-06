@@ -30,13 +30,11 @@ jobs:
       - name: Compile mod
         run: gradle build
 
-      - name: Locate Minecraft sources
-        run: |
-          echo "Searching project cache..."
-          find .gradle -type f -name '*sources.jar' -print || true
-
-          echo "Searching Gradle user cache..."
-          find "$HOME/.gradle/caches/fabric-loom" -type f -name '*sources.jar' -print || true
+      - name: Upload Minecraft sources
+        uses: actions/upload-artifact@v6
+        with:
+          name: MinecraftSources
+          path: .gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-a2be0c1b52/1.8.9-loom.mappings.1_8_9.layered+hash.2015866208-v2/*-sources.jar
 
       - name: Upload JAR
         uses: actions/upload-artifact@v6
