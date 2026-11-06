@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.tiller.customfpscap.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "customfpscap.refmap.json",
+  "client": [
+    "MinecraftFpsCapMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

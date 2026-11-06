@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "customfpscap",
+  "version": "${version}",
+  "name": "Custom FPS Cap",
+  "description": "Adds a configurable FPS cap beyond Minecraft 1.8.9's normal options.",
+  "environment": "client",
+  "mixins": [
+    "customfpscap.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": "1.8.9"
+  }
+}
