@@ -9,7 +9,7 @@ import java.util.Properties;
 /** Loads the optional FPS cap from config/custom-fps-cap.properties. */
 public final class FpsCapConfig {
     private static final String KEY = "limit";
-    private static final int DEFAULT_LIMIT = 800;
+    private static final int DEFAULT_LIMIT = 1000;
     private static final int LIMIT;
 
     static {
