@@ -38,12 +38,6 @@ jobs:
           echo "Searching Gradle user cache..."
           find "$HOME/.gradle/caches/fabric-loom" -type f -name '*sources.jar' -print || true
 
-      - name: Upload Minecraft sources
-        uses: actions/upload-artifact@v6
-        with:
-          name: MinecraftSources
-          path: generated-sources/*.jar
-
       - name: Upload JAR
         uses: actions/upload-artifact@v6
         with:
