@@ -1,0 +1,60 @@
+plugins {
+    id 'maven-publish'
+    id 'fabric-loom' version '1.18-SNAPSHOT'
+    id 'ploceus' version '1.18-SNAPSHOT'
+}
+
+base {
+    archivesName = project.archives_base_name
+}
+
+version = "${project.version}+mc${project.minecraft_version}"
+group = project.maven_group
+
+repositories {
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    exceptions ploceus.raven(project.raven_build)
+    signatures ploceus.sparrow(project.sparrow_build)
+    nests ploceus.nests(project.nests_build)
+    mappings ploceus.featherMappings(project.feather_build)
+    ploceus.dependOsl(project.osl_version)
+
+    // Mixin is supplied by the Ornithe/Fabric loader at runtime; this dependency
+    // is used only by the annotation processor to generate the remapping refmap.
+    annotationProcessor "net.fabricmc:sponge-mixin:0.15.0+mixin.0.8.7"
+}
+
+loom {
+    mixin {
+        defaultRefmapName = 'customfpscap.refmap.json'
+    }
+}
+
+processResources {
+    inputs.property 'version', version
+    filesMatching('fabric.mod.json') {
+        expand 'version': version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 8
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${base.archivesName.get()}" }
+    }
+}
