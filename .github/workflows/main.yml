@@ -30,11 +30,13 @@ jobs:
       - name: Compile mod
         run: gradle build
 
-      - name: Collect Minecraft sources
+      - name: Locate Minecraft sources
         run: |
-          mkdir -p generated-sources
-          find . -path '*/minecraftMaven/net/minecraft/minecraft-merged/*-sources.jar' -exec cp {} generated-sources/ \;
-          ls -lh generated-sources
+          echo "Searching project cache..."
+          find .gradle -type f -name '*sources.jar' -print || true
+
+          echo "Searching Gradle user cache..."
+          find "$HOME/.gradle/caches/fabric-loom" -type f -name '*sources.jar' -print || true
 
       - name: Upload Minecraft sources
         uses: actions/upload-artifact@v6
