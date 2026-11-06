@@ -24,6 +24,9 @@ jobs:
         with:
           gradle-version: current
 
+      - name: Generate Minecraft sources
+        run: gradle genSources
+      
       - name: Compile mod
         run: gradle build
 
