@@ -22,13 +22,8 @@ dependencies {
     ploceus.dependOsl(project.osl_version)
 
     annotationProcessor "net.fabricmc:sponge-mixin:0.15.0+mixin.0.8.7"
-}
 
-loom {
-    mixin {
-        defaultRefmapName = 'customfpscap.refmap.json'
-    }
-}
+    useLegacyMixinAp = true
 
 processResources {
     inputs.property 'version', version
